@@ -514,39 +514,6 @@
       e.preventDefault();
     });
   }
-
-  /*--------------------------------------------------------------
-    19. CountDown
-  --------------------------------------------------------------*/
-  function countDown() {
-    if ($.exists(".cs-countdown")) {
-      $(".cs-countdown").each(function () {
-        var _this = this;
-        var el = $(_this).data("countdate");
-        var countDownDate = new Date(el).getTime();
-        var x = setInterval(function () {
-          var now = new Date().getTime();
-          var distance = countDownDate - now;
-          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          var hours = Math.floor(
-            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          );
-          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-          $(_this).find("#cs-count-days").html(days);
-          $(_this).find("#cs-count-hours").html(hours);
-          $(_this).find("#cs-count-minutes").html(minutes);
-          $(_this).find("#cs-count-seconds").html(seconds);
-
-          if (distance < 0) {
-            clearInterval(x);
-            $(_this).html("<div class='cs-token__expired'>TOKEN EXPIRED<div>");
-          }
-        }, 1000);
-      });
-    }
-  }
-
   /*--------------------------------------------------------------
     14. Smooth Move
   --------------------------------------------------------------*/
@@ -560,7 +527,7 @@
             {
               scrollTop: scrollPoint,
             },
-            800
+            250
           );
         }
         return false;
