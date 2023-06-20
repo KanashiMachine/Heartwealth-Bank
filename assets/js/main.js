@@ -3,11 +3,6 @@
 
   /*
   |--------------------------------------------------------------------------
-  | Template Name: Lala
-  | Author: Laralink
-  | Version: 1.0.0
-  |--------------------------------------------------------------------------
-  |--------------------------------------------------------------------------
   | TABLE OF CONTENTS:
   |--------------------------------------------------------------------------
   |
@@ -20,19 +15,12 @@
   | 7. Overlay
   | 8. Slick Slider
   | 9. Isotop Initialize
-  | 10. Review
-  | 11. Light Gallery
-  | 12. Modal Video
-  | 13. Hobble Effect
-  | 14. Parallax
-  | 15. Countdown
-  | 16. Tabs
-  | 17. Accordian
-  | 18. Progress Bar
-  | 19. CountDown
-  | 20. Ripple
-  | 21. Smooth Move
-  | 22. Scroll Up
+  | 10. Hobble Effect
+  | 11. Parallax
+  | 12. Countdown and CounterInit
+  | 13. Tabs
+  | 14. Smooth Move
+  | 15. Scroll Up
   |
   */
 
@@ -61,17 +49,10 @@
     overlay();
     slickInit();
     isotopInit();
-    review();
-    lightGalleryInit();
-    modalVideo();
     hobbleEffect();
     parallaxEffect();
     counterInit();
-    tabs();
-    accordian();
-    progressBar();
     countDown();
-    rippleInit();
     scrollUp();
     new WOW().init();
   });
@@ -323,53 +304,7 @@
   }
 
   /*--------------------------------------------------------------
-    10. Review
-  --------------------------------------------------------------*/
-  function review() {
-    $(".cs-review").each(function () {
-      var review = $(this).data("review");
-      var reviewVal = review * 20 + "%";
-      $(this).find(".cs-review-in").css("width", reviewVal);
-    });
-  }
-
-  /*--------------------------------------------------------------
-    11. Light Gallery
-  --------------------------------------------------------------*/
-  function lightGalleryInit() {
-    $(".cs-lightgallery").each(function () {
-      $(this).lightGallery({
-        selector: ".cs-lightbox-item",
-        subHtmlSelectorRelative: false,
-        thumbnail: false,
-        mousewheel: true,
-      });
-    });
-  }
-
-  /*--------------------------------------------------------------
-    12. Modal Video
-  --------------------------------------------------------------*/
-  function modalVideo() {
-    $(document).on("click", ".cs-video__open", function (e) {
-      e.preventDefault();
-      var video = $(this).attr("href");
-      $(".cs-video__popup__container iframe").attr("src", video);
-      $(".cs-video__popup").addClass("active");
-    });
-    $(".cs-video__popup__close, .cs-video__popup__layer").on(
-      "click",
-      function (e) {
-        $(".cs-video__popup").removeClass("active");
-        $("html").removeClass("overflow-hidden");
-        $(".cs-video__popup__container iframe").attr("src", "about:blank");
-        e.preventDefault();
-      }
-    );
-  }
-
-  /*--------------------------------------------------------------
-    13. Hobble Effect
+    10. Hobble Effect
   --------------------------------------------------------------*/
   function hobbleEffect() {
     $(document)
@@ -455,7 +390,7 @@
   }
 
   /*--------------------------------------------------------------
-    14. Parallax
+    11. Parallax
   --------------------------------------------------------------*/
   function parallaxEffect() {
     $(".cs-bg__parallax, .cs-parallax").each(function () {
@@ -512,7 +447,7 @@
   }
 
   /*--------------------------------------------------------------
-    15. Countdown
+    12. Countdown and CounterInit
   --------------------------------------------------------------*/
   function counterInit() {
     if ($.exists(".odometer")) {
@@ -536,8 +471,37 @@
     }
   }
 
+  function countDown() {
+    if ($.exists(".cs-countdown")) {
+      $(".cs-countdown").each(function () {
+        var _this = this;
+        var el = $(_this).data("countdate");
+        var countDownDate = new Date(el).getTime();
+        var x = setInterval(function () {
+          var now = new Date().getTime();
+          var distance = countDownDate - now;
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          $(_this).find("#cs-count-days").html(days);
+          $(_this).find("#cs-count-hours").html(hours);
+          $(_this).find("#cs-count-minutes").html(minutes);
+          $(_this).find("#cs-count-seconds").html(seconds);
+
+          if (distance < 0) {
+            clearInterval(x);
+            $(_this).html("<div class='cs-token__expired'>TOKEN EXPIRED<div>");
+          }
+        }, 1000);
+      });
+    }
+  }
+
   /*--------------------------------------------------------------
-    16. Tabs
+    13. Tabs
   --------------------------------------------------------------*/
   function tabs() {
     $(".cs-tabs.cs-fade__tabs .cs-tab__links a").on("click", function (e) {
@@ -548,36 +512,6 @@
         .hide();
       $(this).parents("li").addClass("active").siblings().removeClass("active");
       e.preventDefault();
-    });
-  }
-
-  /*--------------------------------------------------------------
-    17. Accordian
-  --------------------------------------------------------------*/
-  function accordian() {
-    var $this = $(this);
-    $(".cs-accordian").children(".cs-accordian-body").hide();
-    $(".cs-accordian.active").children(".cs-accordian-body").show();
-    $(".cs-accordian__head").on("click", function () {
-      $(this)
-        .parent(".cs-accordian")
-        .siblings()
-        .children(".cs-accordian-body")
-        .slideUp(250);
-      $(this).siblings().slideDown(250);
-      /* Accordian Active Class */
-      $(this).parents(".cs-accordian").addClass("active");
-      $(this).parent(".cs-accordian").siblings().removeClass("active");
-    });
-  }
-
-  /*--------------------------------------------------------------
-    18. Progress Bar
-  --------------------------------------------------------------*/
-  function progressBar() {
-    $(".cs-progress").each(function () {
-      var progressPercentage = $(this).data("progress") + "%";
-      $(this).find(".cs-progress__in").css("width", progressPercentage);
     });
   }
 
@@ -614,22 +548,7 @@
   }
 
   /*--------------------------------------------------------------
-    20. Ripple
-  --------------------------------------------------------------*/
-  function rippleInit() {
-    if ($.exists(".cs-ripple__version")) {
-      $(".cs-ripple__version").each(function () {
-        $(".cs-ripple__version").ripples({
-          resolution: 512,
-          dropRadius: 20,
-          perturbance: 0.04,
-        });
-      });
-    }
-  }
-
-  /*--------------------------------------------------------------
-    21. Smooth Move
+    14. Smooth Move
   --------------------------------------------------------------*/
   function smoothMove() {
     if ($.exists(".cs-smooth__move")) {
@@ -650,7 +569,7 @@
   }
 
   /*--------------------------------------------------------------
-    22. Scroll Up
+    15. Scroll Up
   --------------------------------------------------------------*/
   function scrollUp() {
     $("#cs-scrollup").on("click", function (e) {
