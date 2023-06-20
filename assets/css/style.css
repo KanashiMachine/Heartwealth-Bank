@@ -159,6 +159,7 @@ a:hover {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
 /*--------------------------------------------------------------
 2. Spacing
 ----------------------------------------------------------------*/
@@ -3450,107 +3451,6 @@ input#submit {
     .cs-counter3__wrap.cs-color1 .cs-counter__title,
     .cs-counter3__wrap.cs-color1 .cs-counter__number {
       color: #fff; }
-
-/* Odometer */
-.odometer.odometer-auto-theme,
-.odometer.odometer-auto-theme .odometer-digit,
-.odometer.odometer-theme-default,
-.odometer.odometer-theme-default .odometer-digit {
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  position: relative; }
-
-.odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer,
-.odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer {
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  visibility: hidden; }
-
-.odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner,
-.odometer.odometer-theme-default .odometer-digit .odometer-digit-inner {
-  text-align: left;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden; }
-
-.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon,
-.odometer.odometer-theme-default .odometer-digit .odometer-ribbon {
-  display: block; }
-
-.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner,
-.odometer.odometer-theme-default .odometer-digit .odometer-ribbon-inner {
-  display: block;
-  -webkit-backface-visibility: hidden; }
-
-.odometer.odometer-auto-theme .odometer-digit .odometer-value,
-.odometer.odometer-theme-default .odometer-digit .odometer-value {
-  display: block;
-  -webkit-transform: translateZ(0); }
-
-.odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value,
-.odometer.odometer-theme-default .odometer-digit .odometer-value.odometer-last-value {
-  position: absolute; }
-
-.odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner,
-.odometer.odometer-theme-default.odometer-animating-up .odometer-ribbon-inner {
-  transition: transform 2s; }
-
-.odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner,
-.odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner,
-.odometer.odometer-theme-default.odometer-animating-down .odometer-ribbon-inner,
-.odometer.odometer-theme-default.odometer-animating-up.odometer-animating .odometer-ribbon-inner {
-  transform: translateY(-100%); }
-
-.odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner,
-.odometer.odometer-theme-default.odometer-animating-down.odometer-animating .odometer-ribbon-inner {
-  transition: transform 2s;
-  transform: translateY(0); }
-
-.odometer.odometer-auto-theme,
-.odometer.odometer-theme-default {
-  line-height: 1.1em; }
-
-.odometer.odometer-auto-theme .odometer-value,
-.odometer.odometer-theme-default .odometer-value {
-  text-align: center; }
-
-@media screen and (max-width: 767px) {
-  .cs-counter.cs-style1 .cs-counter__title {
-    font-size: 22px; }
-
-  .cs-counter.cs-style1 .cs-counter__number {
-    font-size: 48px;
-    margin-bottom: 0; }
-
-  .cs-counter.cs-style3 .cs-counter__icon {
-    width: 65px;
-    font-size: 60px; }
-
-  .cs-counter.cs-style3 .cs-counter__icon svg {
-    width: 65px;
-    height: 65px; }
-
-  .cs-counter.cs-style3 .cs-counter__title {
-    font-size: 22px; }
-
-  .cs-counter.cs-style3 .cs-counter__number {
-    font-size: 38px; } }
-@media screen and (max-width: 575px) {
-  .cs-counter.cs-style2 {
-    margin: auto;
-    text-align: center; }
-
-  .cs-counter.cs-style2 .cs-counter__title {
-    font-size: 22px; }
-
-  .cs-counter.cs-style2 .cs-counter__number {
-    font-size: 38px; } }
 /*--------------------------------------------------------------
 17. CTA
 ----------------------------------------------------------------*/
